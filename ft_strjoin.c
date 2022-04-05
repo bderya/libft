@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bderya <bderya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 17:11:21 by bderya            #+#    #+#             */
-/*   Updated: 2022/03/30 11:14:34 by bderya           ###   ########.fr       */
+/*   Created: 2022/03/29 17:06:46 by bderya            #+#    #+#             */
+/*   Updated: 2022/03/29 17:06:46 by bderya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*ret;
+	size_t	src_idx;
+	size_t	dst_idx;
 
-	if (!dst)
-	{
+	ret = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ret)
 		return (NULL);
-	}
-	i = 0;
-	while (i < n)
+	src_idx = 0;
+	dst_idx = 0;
+	while (s1[src_idx])
 	{
-		*(char *)(dst + i) = *(char *)(src + i);
-		i++;
+		ret[dst_idx++] = s1[src_idx];
+		src_idx++;
 	}
-	return (dst);
+	src_idx = 0;
+	while (s2[src_idx])
+	{
+		ret[dst_idx++] = s2[src_idx];
+		src_idx++;
+	}
+	ret[dst_idx] = 0;
+	return (ret);
 }

@@ -5,14 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bderya <bderya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 13:49:17 by bderya            #+#    #+#             */
-/*   Updated: 2022/03/22 14:31:52 by bderya           ###   ########.fr       */
+/*   Created: 2022/03/25 19:15:11 by bderya            #+#    #+#             */
+/*   Updated: 2022/03/26 14:24:27 by bderya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-int ft_strlen(char *str)
+size_t	ft_strlen(const char *s)
 {
-    
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
