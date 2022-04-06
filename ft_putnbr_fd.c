@@ -23,8 +23,9 @@ static int	abs_val(int x)
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	ret[13];
-	int	is_negative;
-	int	str_idx;
+	int		is_negative;
+	int		str_idx;
+	int		last_digit;
 
 	is_negative = n < 0;
 	ft_bzero(ret, 13);
@@ -33,7 +34,6 @@ void	ft_putnbr_fd(int n, int fd)
 	str_idx = 0;
 	while (n != 0)
 	{
-		int	last_digit;
 		last_digit = abs_val(n % 10);
 		n /= 10;
 		ret[str_idx++] = '0' + last_digit;

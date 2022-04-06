@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bderya <bderya@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 17:08:46 by bderya            #+#    #+#             */
-/*   Updated: 2022/04/06 09:28:37 by bderya           ###   ########.fr       */
+/*   Created: 2022/04/06 07:09:54 by bderya            #+#    #+#             */
+/*   Updated: 2022/04/06 07:28:16 by bderya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+t_list	*ft_lstlast(t_list *lst)
 {
-	char			*s2;
-	unsigned int	i;
-
-	if (!s)
+	if (!lst)
 		return (NULL);
-	i = 0;
-	s2 = (char *)malloc(sizeof(*s) * ft_strlen((const char *)s) + 1);
-	if (!s2)
-		return (NULL);
-	while (s[i])
+	while (lst->next)
 	{
-		s2[i] = (*f)(i, s[i]);
-		i++;
+		lst = lst->next;
 	}
-	s2[i] = '\0';
-	return (s2);
+	return (lst);
 }

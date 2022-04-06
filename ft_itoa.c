@@ -12,53 +12,51 @@
 
 #include "libft.h"
 
-static int	abs_val(int x)
+static size_t	count_cipher(int n)
 {
-	if (x < 0)
-		return (-x);
-	else
-		return (x);
+	size_t	cipher;
+
+	cipher = 0;
+	if (n <= 0)
+		cipher++;
+	while (n)
+	{
+		n = n / 10;
+		cipher++;
+	}
+	return (cipher);
 }
 
-static void	reverse_string(char *s)
+char	*str_numb(char *number, unsigned int n, int cipher)
 {
-	size_t	len;
-	size_t	i;
-	char	tmp;
-
-	len = ft_strlen(s);
-	i = 0;
-	while (i < len / 2)
+	while (n > 0)
 	{
-		tmp = s[i];
-		s[i] = s[len - 1 - i];
-		s[len - 1 - i] = tmp;
-		++i;
+		number[cipher--] = n % 10 + '0';
+		n = n / 10;
 	}
+	return (number);
 }
 
 char	*ft_itoa(int n)
 {
-	int	is_negative;
-	int	str_idx;
-	int	last_digit;
-	char	*ret;
+	char	*number_str;
+	int		cipher;
 
-	is_negative = n < 0;
-	*ret = (char *) ft_calloc(11 + is_negative, sizeof(char));
-	if (!ret)
+	cipher = count_cipher(n);
+	number_str = (char *)malloc(sizeof(char) * cipher + 1);
+	if (!number_str)
 		return (NULL);
+	number_str[cipher--] = '\0';
 	if (n == 0)
-		ret[0] = '0';
-	str_idx = 0;
-	while (n != 0)
 	{
-		last_digit = abs_val(n % 10);
-		n /= 10;
-		ret[str_idx++] = '0' + last_digit;
+		number_str[cipher] = '0';
+		return (number_str);
 	}
-	if (is_negative)
-		ret[str_idx] = '-';
-	reverse_string(ret);
-	return (ret);
+	if (n < 0)
+	{
+		n = -n;
+		number_str[0] = '-';
+	}
+	number_str = str_numb(number_str, (unsigned int)n, cipher);
+	return (number_str);
 }

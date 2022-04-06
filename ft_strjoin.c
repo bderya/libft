@@ -10,12 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ret;
 	size_t	src_idx;
 	size_t	dst_idx;
 
+	if (s1 && s2)
+	{
 	ret = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!ret)
 		return (NULL);
@@ -34,4 +38,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	ret[dst_idx] = 0;
 	return (ret);
+	}
+	return (NULL);
 }

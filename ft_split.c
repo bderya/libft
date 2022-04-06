@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 static char	*my_strncpy(char *dst, const char *src, size_t len)
 {
 	size_t	i;
@@ -28,14 +30,12 @@ static char	*my_strncpy(char *dst, const char *src, size_t len)
 	return (dst);
 }
 
-static int	split_separate(char **arr, const char *str, char c)
+static int	split_separate2(char **arr, const char *str, char c, size_t w)
 {
-	size_t	w;
 	size_t	i;
 	size_t	len;
 
 	i = 0;
-	w = 0;
 	while (str[i])
 	{
 		if (str[i] != c)
@@ -55,6 +55,15 @@ static int	split_separate(char **arr, const char *str, char c)
 			++i;
 	}
 	arr[w] = NULL;
+	return (1);
+}
+
+static int	split_separate(char **arr, const char *str, char c)
+{
+	size_t	w;
+
+	w = 0;
+	split_separate2(arr, str, c, w);
 	return (1);
 }
 
